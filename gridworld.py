@@ -52,13 +52,14 @@ class GridWorld:
         return next_state
         
     def __calc_next_state(self, state, action) -> tuple:
-        move = self.__action_move_map
+        # actionしたら今の座標からどこに進むか。
+        move = self.__action_move_map[action]
+        # actionの結果、次の座標はどこになるか。
         next_state = (state[0] + move[0], state[1] + move[1])
         return next_state
 
     def check_movable(self, state) -> bool:
-        x = state[0]
-        y = state[1]
+        y, x = state
         if x < 0 or self.width <= x or y < 0 or self.height <= y:
             return False
         else:
