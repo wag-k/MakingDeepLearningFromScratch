@@ -3,8 +3,9 @@ import numpy as np
 
 import gridworld as gw
 import greedy
+from iagent import IAgent
 
-class McAgentInGridWorld:
+class GridWorldMcAgent(IAgent):
     def __init__(self) -> None:
         # discount rate
         self.gamma = 0.9
@@ -53,7 +54,7 @@ def main():
     env = gw.GridWorld()
     env.wall_states = [(1, 1), (0, 1)]
     
-    agent = McAgentInGridWorld()
+    agent = GridWorldMcAgent()
     agent.epsilon
     
     total_episodes = 1000
