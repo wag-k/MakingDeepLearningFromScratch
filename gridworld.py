@@ -1,4 +1,5 @@
 import numpy as np
+import gridworld_render as render_helper
 
 class GridWorld:
     def __init__(self):
@@ -68,6 +69,17 @@ class GridWorld:
     
     def get_reward(self, state, action, next_state):
         return self.reward_map[next_state]
+    
+    
+    def render_v(self, v=None, policy=None, print_value=True):
+        renderer = render_helper.Renderer(self.reward_map, self.goal_state,
+                                          self.wall_states)
+        renderer.render_v(v, policy, print_value)
+
+    def render_q(self, q=None, print_value=True):
+        renderer = render_helper.Renderer(self.reward_map, self.goal_state,
+                                          self.wall_states)
+        renderer.render_q(q, print_value)
 
 def main():
     env = GridWorld()
@@ -82,6 +94,7 @@ def main():
     for state in env.get_states():
         print(state)
     
+    env.render_v()
 
 if __name__ == "__main__":
     main()
